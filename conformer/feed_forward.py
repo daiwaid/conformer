@@ -49,8 +49,8 @@ class FeedForwardModule(nn.Module):
             Linear(encoder_dim, encoder_dim * expansion_factor, bias=True),
             Swish(),
             nn.Dropout(p=dropout_p),
-            # Linear(encoder_dim * expansion_factor, encoder_dim, bias=True),
-            # nn.Dropout(p=dropout_p),
+            Linear(encoder_dim * expansion_factor, encoder_dim, bias=True),
+            nn.Dropout(p=dropout_p),
         )
 
     def forward(self, inputs: Tensor) -> Tensor:

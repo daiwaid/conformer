@@ -82,12 +82,12 @@ class ConformerBlock(nn.Module):
                 num_heads=num_attention_heads,
                 dropout_p=attention_dropout_p,
             ),
-            # ConformerConvModule(
-            #     in_channels=encoder_dim,
-            #     kernel_size=conv_kernel_size,
-            #     expansion_factor=conv_expansion_factor,
-            #     dropout_p=conv_dropout_p,
-            # ),
+            ConformerConvModule(
+                in_channels=encoder_dim,
+                kernel_size=conv_kernel_size,
+                expansion_factor=conv_expansion_factor,
+                dropout_p=conv_dropout_p,
+            ),
             FeedForwardModule(
                 encoder_dim=encoder_dim,
                 expansion_factor=feed_forward_expansion_factor,
