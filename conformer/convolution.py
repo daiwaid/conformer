@@ -141,7 +141,7 @@ class ConformerConvModule(nn.Module):
             DepthwiseConv1d(in_channels, in_channels, kernel_size, stride=1, padding=(kernel_size - 1) // 2),
             nn.BatchNorm1d(in_channels),
             Swish(),
-            PointwiseConv1d(in_channels, in_channels, stride=1, padding=0, bias=True),
+            # PointwiseConv1d(in_channels, in_channels, stride=1, padding=0, bias=True),
             nn.Dropout(p=dropout_p),
         )
 
