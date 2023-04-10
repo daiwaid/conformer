@@ -181,7 +181,7 @@ class ConformerEncoder(nn.Module):
                 ``(batch, seq_length, dimension)``
             * output_lengths (torch.LongTensor): The length of output tensor. ``(batch)``
         """
-        outputs, output_lengths = self.conv_subsample(inputs, input_lengths)
+        outputs, output_lengths = inputs, input_lengths
 
         for layer in self.layers:
             outputs = layer(outputs)
