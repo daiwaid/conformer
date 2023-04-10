@@ -143,10 +143,6 @@ class ConformerEncoder(nn.Module):
     ):
         super(ConformerEncoder, self).__init__()
         self.conv_subsample = Conv2dSubampling(in_channels=1, out_channels=encoder_dim)
-        self.input_projection = nn.Sequential(
-            Linear(encoder_dim * (((input_dim - 1) // 2 - 1) // 2), encoder_dim),
-            nn.Dropout(p=input_dropout_p),
-        )
         self.layers = nn.ModuleList([ConformerBlock(
             encoder_dim=encoder_dim,
             num_attention_heads=num_attention_heads,
@@ -186,7 +182,6 @@ class ConformerEncoder(nn.Module):
             * output_lengths (torch.LongTensor): The length of output tensor. ``(batch)``
         """
         outputs, output_lengths = self.conv_subsample(inputs, input_lengths)
-        outputs = self.input_projection(outputs)
 
         for layer in self.layers:
             outputs = layer(outputs)
